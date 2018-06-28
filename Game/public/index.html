@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Socket</title>
+	<link rel="stylesheet" type="text/css" href="/css/clicker.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    
+	<script src="/socket.io/socket.io.js" charset="utf-8"></script>
+	<script src="clicker.js" charset="utf-8"></script>
+
+</head>
+<body>
+<h1>Player </h1>
+
+<div class="click-container">
+	<button id="click">CLick</button>
+</div>
+<div class="campo" id="campo">
+	
+	<div class="click-container" id="player2">
+		<div class="pesonaje-container rounded-circle">
+			<div class="impacto"></div>
+			<img src="/img/freezer-0.gif" alt="P2">
+			<button class="click" id="Player2">Freezer</button>
+		</div>
+	</div>
+	
+	<div class="click-container" id="player1">
+		<div class="pesonaje-container rounded-circle">
+			<div class="impacto"></div>
+			<img src="/img/Goku-0.png" alt="P1">
+			<button class="click" id="Player1">Goku</button>
+		</div>
+	</div>
+
+</div>
+
+<div class="clickAtack"></div>
+
+</body>
+</html>

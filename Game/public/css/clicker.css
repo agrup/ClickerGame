@@ -1,0 +1,35 @@
+#player1{
+		float:right;
+	position:fixed;
+	float: right;
+	margin: 10%,10%,10%,10%;
+	},
+
+#player2{
+	float:left;
+	position:fixed;
+	left:10%;
+	right: 10%;
+	top: 10%;
+	},
+
+
+#campo {
+    display:inherit;
+}
+img {
+	width: 10vw;
+	height: 10vw;
+	border-radius: 50%;
+}
+.rounded-circle{
+	border-radius: 50%;
+}
+.pesonaje-container{
+	background-color:red;
+}
+
+.click-container{
+	width: 15%;
+	height: 15%;
+}
