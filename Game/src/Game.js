@@ -7,32 +7,23 @@
 		var socketI1d2 = null;
 		var partidaID =null;
 */
-var Game {
-	userid :;
-
-
-	init: fuction() {
-		Game.userid
-	}
-
-
-
-}
-
-function Game (partidaID){
+'use strict';
+module.exports = class Game {
+	constructor(partidaID){
 
 		this.userid1 = null;
 		this.userid2 = null;
 		this.socketId1 = null;
 		this.socketI1d2 = null;
 		this.partidaID =partidaID;
+	}
 
-}
-function getPartida(){
-	this.partidaID;
-}
+	getPartida(){
+		this.partidaID;
+	}
 
-function toArray (){
-	return[18,19];
+	toArray (){
+		return[18,19];
+	}
 }
-module.exports = Game;
+//module.exports = Game;

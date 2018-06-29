@@ -74,7 +74,7 @@ app.get('/game/:id', function(req, res) {
 });
 
 		var game = new Game(req.params.id)
-		console.log(Game.getPartida());
+		console.log(game.getPartida());
 
 		gameArray.push(game);
 
