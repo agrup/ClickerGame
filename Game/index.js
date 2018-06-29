@@ -2,37 +2,51 @@ const reglas = require('./reglas');
 const path =require('path');
 const express = require ('express');
 var http = require('http');
-const app = express();
 var router = express.Router();
-var hbs = require('express-handlebars')
+var hbs = require('express-handlebars');
+
+const app = express();
+
+const SocketIO = require('socket.io');
+
+
+
+var url = app.use(express.static(path.join(__dirname,'public')));
 
 
 app.engine('hbs', hbs({extname: 'hbs' }));
 
-
-
 app.set('views',__dirname + '/views/');
+
 app.set('view engine', 'hbs');
 
 
 var port = (process.env.PORT || 5000)
+
 app.set('port', port);
+
+
+//const server =http.createServer(app);
+
+
+//const io = SocketIO.listen(server);
+
+
 //server http
 /*
 console.log(port);
 var serverHTTP = http.createServer(app);
 
-*/
 
+
+
+*/
 const server = app.listen(app.get('port'), ()=> {
 	console.log('server on',app.get('port'))
 });
 
-const SocketIO = require('socket.io');
-
 const io = SocketIO(server);
 
-//websockets
 io.on('connection', (socket)=>{
 	console.log('nueva conexion',socket.id);
 	socket.on('clickemit',(clickData)=>{
@@ -47,25 +61,22 @@ io.on('connection', (socket)=>{
 	});
 });
 
+//websockets
+
+
 //static file 
-	var url = app.use(express.static(path.join(__dirname,'public')));
+
 
 app.get('/users/:id', function(req, res) {
-
-
-
-
-
-	
-		console.log('ñañaña');
+		
 	 	console.log(req.params.id);
-	 	res.render('index');
+	 	res.redirect('../');
+
 });
 /*
 	app.redirect('view/index');
 	console.log('server on',app.get('port'));
 	
-
 
 
 
