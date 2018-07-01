@@ -1,5 +1,5 @@
 const socket = io()
-
+console.log(socket)
 
 $(document).ready(function(){
 

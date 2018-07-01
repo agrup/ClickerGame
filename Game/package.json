@@ -12,6 +12,8 @@
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.18.3",
+    "express-ws": "^4.0.0",
+    "hashmap": "^2.3.0",
     "hbs": "^4.0.1"
   }
 }
