@@ -24,7 +24,12 @@ module.exports = function(io){
 			});
 				socket.on('clickplayer',(clickData)=>{
 				let opp = Admin.getMap().get(socket.id);
+				/*
+				if(socket.id!==undefeined ||opp!== undefeined ){
+
 				console.log(socket.id,opp, "clickplayer",clickData);
+				}
+				*/
 
 
 				Admin.clickEvent(socket.id,opp, clickData);

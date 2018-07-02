@@ -2,6 +2,8 @@
 
 $(document).ready(function(){
 
+	//$('.click-container').clickSpark();
+
 	const socket = io();
 
 	let click =document.getElementById('click');
@@ -36,15 +38,17 @@ $(document).ready(function(){
 		itemagregar.append('<p class="clickeffect">'+'-1'+'</p>')
 		/*
 		*/
+		itemagregar.slideup();
 		$('.clickeffect').animate({
-		    opacity: 1,
-		   // left: "+=20",
+		   // opacity: 1,
+		   	//left: "+=20",
 		    height: "toggle",
-		    //fontSize:"8em",
+		    fontSize:"8em",
 		    //transform: "translateY(4px)"
 		},100,function(){
+			itemagregar.slideup();
 			opacity: 1;
-			$('p.clickeffect').slideup(400,function(){
+			$('.clickeffect').slideup(700,function(){
 			$('p.clickeffect').remove();
 				
 			});
