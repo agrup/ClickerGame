@@ -24,10 +24,10 @@ module.exports = function(io){
 			});
 				socket.on('clickplayer',(clickData)=>{
 				let opp = Admin.getMap().get(socket.id);
-				console.log(socket.id,opp, "clickplayer");
+				console.log(socket.id,opp, "clickplayer",clickData);
 
 
-				Admin.clickEvent(socket.id,opp, "clickplayer");
+				Admin.clickEvent(socket.id,opp, clickData);
 				//console.log(clickData);
 				//console.log(Admin.getMap().get(socket.id),socket.id);
 				//socket.broadcast.emit('clickAtack',clickData);

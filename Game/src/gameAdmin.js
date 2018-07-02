@@ -16,21 +16,30 @@ this.lastGameCreated=null;
 		return this.map;
 	}
 
-	gameAdmin.prototype.clickEvent = function clickEvent(socketId,opp, clickplayer){
+	gameAdmin.prototype.clickEvent = function clickEvent(socketId,opp, clickData){
 		//busco el oponente y le aplico el ataque
 		//busco la partida
 		let partida = this.SockGameMap.get(socketId);
 		//veridico que player es
 		let game = this.gameArray[partida];
 		if(game.socketId1==socketId){
+			if(clickData.Userc=='player1'){
+
 			let vida =game.players['player2'].Vida -=
 				game.players['player1'].Ataque;
 						console.log('vida: '+vida);
+					}else{
+						console.log('defensa deshabilitada');
+					}
 
 		}else{
-			let vida =game.players['player1'].Vida -=
-				game.players['player2'].Ataque;
-						console.log('vida: '+vida);
+			if(clickData.Userc=='player2'){
+				let vida =game.players['player1'].Vida -=
+					game.players['player2'].Ataque;
+					console.log('vida: '+vida);
+			}else{
+				console.log('defensa deshabilitada');
+			}
 
 		}
 
