@@ -8,6 +8,7 @@
     
 	<script src="/socket.io/socket.io.js" charset="utf-8"></script>
 	<script src="{{__dirname}}/js/clicker.js" charset="utf-8"></script>
+	<script src="{{__dirname}}/js/efectos.js" charset="utf-8"></script>
 
 </head>
 <body>
@@ -18,12 +19,14 @@
 </div>
 <div class="campo" id="campo">
 	<div class="split left">
-  		<div class="centered">
+  		<div class="centered ">
 			<div class="click-container" id="player2">
 				<div class="pesonaje-container rounded-circle">
 					<div class="impacto"></div>
 					<img src="/img/freezer-0.gif" alt="P2">
-					<button class="click" id="Player2">Freezer</button>
+					<!--
+						<button class="click" id="Player2">Freezer</button>
+					-->
 				</div>
 			</div>
 		</div>
@@ -34,7 +37,10 @@
 				<div class="pesonaje-container rounded-circle">
 					<div class="impacto"></div>
 					<img src="/img/Goku-0.png" alt="P1">
-					<button class="click" id="Player1">Goku</button>
+					<!--
+						<button class="click" id="Player1">Goku</button>
+						<button class="click" id="Player2">Freezer</button>
+					-->
 				</div>
 			</div>
 		</div>

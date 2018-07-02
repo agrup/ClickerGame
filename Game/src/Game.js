@@ -1,15 +1,48 @@
+
 function Game (partidaId ,userId1,userId2,socketId1){
-	
-		this.userId1 = userId1;
-		this.userId2 = userId2;
-		this.socketId1 = socketId1;
-		this.socketId2 = null;
-		this.partidaId =partidaId;
-	
+
+	this.userId1 = userId1;
+	this.userId2 = userId2;
+	this.socketId1 = socketId1;
+	this.socketI1d2 = null;
+	this.partidaId =partidaId;
+
+
+
+	this.players={
+		"player1":
+		{
+			"Vida":200,
+			"Ataque":1,
+			"Defensa":0.5,
+			"especial":{
+				"Ataque +":0,
+				"Ataque x":1,
+				"Vida":0
+			}
+		},
+		"player2":
+		{
+			"Vida":100,
+			"Ataque":1,
+			"Defensa":0.5,
+			"especial":{
+				"Ataque +":0,
+				"Ataque x":1,
+				"Vida":0
+			}
+		}
+};
+
+
+
 
 }
+	Game.prototype.getPlayer2 = function getPlayer2(){
+		return this.player2;
+	} 
 
-	Game.prototype.getGame = function getGame(){
+	Game.prototype.getGame = function getPGame(){
 		return this;
 	} 
 

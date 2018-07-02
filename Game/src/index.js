@@ -76,8 +76,57 @@ require('./socket')(io,user);
 
 
 app.get('/game/:id/:u1/:u2', function(req, res) {
+	console.log(sock);
+		//require('./socket')(io);
+
+	 //let ub = Admin.addGames(req.params.id,req.params.u1,req.params.u2);
+
+	 //console.log(Admin.getPartidaByid(ub));
+
+	 
+
+/*
+		// variable para verificar si existe la partida
+		//con la api se verificara passport
+		var newP = true;
+
+		//verifico si existe la partida si no la creo
+		//gameArray.forEach(function(valor, indice, array) {
+		Admin.getGames().forEach(function(valor, indice, array) {
+    	console.log("En el índice " + indice + " hay este valor: " + valor.partidaId + " id requerido"+ req.params.id);
+    		
+    		if(valor.partidaId==req.params.id ){
+    			
+    			newP = false;
+    			var ub = indice;
+    			console.log(newP);    		
+    		}
+
+		});
 
 
+		//creo la partida
+			if(newP){
+				//creo una partida nueva
+			var game = new Game(req.params.id);
+			Admin.addNewGame(req.params.id);
+
+			//game.setuserId1()
+			//la agrego a la listas de partidas
+			console.log("game: "+game.getPartida());    
+			//gameArray.push(game);		
+			console.log('Nueva Partida:'+ game.partidaId);	
+			global.partida=game.partidaId;
+			//require('./socket')(io,req.params.id);
+			}else{
+			
+			console.log("agregado a partida");
+
+			}
+
+*/
+
+		//console.log(gameArray);
 
 		res.render('index');
 	 	//res.redirect('../');

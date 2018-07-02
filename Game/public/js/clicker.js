@@ -1,8 +1,8 @@
-const socket = io()
-console.log(socket)
+
 
 $(document).ready(function(){
 
+	const socket = io();
 
 	let click =document.getElementById('click');
 	click.addEventListener('click',function(){
@@ -22,17 +22,38 @@ $(document).ready(function(){
 			console.log(UserClickeado);
 			socket.emit('clickplayer',{
 				click :"+1",
-				User: UserId,
+				//User: UserId,
 				Userc:UserClickeado,
 		//	})
 		});
+
 	});
   //respuesta clickAtack del servidor
 	socket.on('clickAtack',function(ataque){
 		console.log($('.click-container'));
-	
+		
 		var itemagregar = $('div#'+ataque.Userc+'.click-container');
-		console.log(itemagregar);
-		itemagregar.append('<li>'+ataque.click+'->'+ataque.User+'->'+ataque.Userc+'</li>');
+		itemagregar.append('<p class="clickeffect">'+'-1'+'</p>')
+		/*
+		*/
+		$('.clickeffect').animate({
+		    opacity: 1,
+		   // left: "+=20",
+		    height: "toggle",
+		    //fontSize:"8em",
+		    //transform: "translateY(4px)"
+		},100,function(){
+			opacity: 1;
+			$('p.clickeffect').slideup(400,function(){
+			$('p.clickeffect').remove();
+				
+			});
+		});
+		//console.log(itemagregar);
+	});
+
+	socket.on('readyConnection',function(ataque){
+		
+
 	});
 });
