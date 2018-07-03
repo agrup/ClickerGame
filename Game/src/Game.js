@@ -11,33 +11,49 @@ function Game (partidaId ,userId1,userId2,socketId1){
 
 	this.players={
 		"player1":
-		{
-			"Vida":200,
-			"Ataque":1,
-			"Defensa":0.5,
-			"especial":{
-				"Ataque +":0,
-				"Ataque x":1,
-				"Vida":0
+			{
+				"Vida":100,
+				"Ataque":1,
+				"Defensa":0.5,
+				"especial":{
+					"Ataque +":0,
+					"Ataque x":1,
+					"Vida":0
+				},
+				"User":{
+				"name":"Bruno",
+				"Player":"Goku-00"
 			}
 		},
+
 		"player2":
 		{
 			"Vida":100,
 			"Ataque":1,
 			"Defensa":0.5,
 			"especial":{
-				"Ataque +":0,
+				"Ataque +":1,
 				"Ataque x":1,
 				"Vida":0
+			},
+			"User":{
+				"name":"Agustin",
+				"Player":"Freezr"
 			}
 		}
-};
+	};
 
 
 
 
 }
+	Game.prototype.getRoom = function getPlayer2(){
+		this.players;
+	} 
+		Game.prototype.SetRoom = function getPlayer2(Room){
+		this.players=Room;
+	} 
+
 	Game.prototype.getPlayer2 = function getPlayer2(){
 		return this.player2;
 	} 

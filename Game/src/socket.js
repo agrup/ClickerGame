@@ -16,28 +16,48 @@ module.exports = function(io){
 			//se lo pido al Admin
 			let ub = Admin.addGames(dir[4],dir[5],dir[6],s1);
 
-			socket.on('clickemit',(clickData)=>{
-			
-			//io.sockets.emit('clickAtack',clickData);
+			if (ub){
+				
+				let opp = Admin.getMap().get(socket.id);
+				//cargo la partida en data y la comparto para armar la pag
+				//Data 
+				Data = Admin.getPartidaBySockerId(socket.id);
+				//console.log('GAME :',Data.players); 
+				socket.emit('GameReady',Data.players);
+				socket.broadcast.to(opp).emit('GameReady',Data.players);
+			}
 
-			socket.broadcast.emit('clickAtack',clickData);
-			});
+/*
+				socket.on('clickemit',(clickData)=>{
+				
+				//io.sockets.emit('clickAtack',clickData);
+
+				socket.broadcast.emit('clickAtack',clickData);
+				});
+*/
 				socket.on('clickplayer',(clickData)=>{
 				let opp = Admin.getMap().get(socket.id);
-				/*
-				if(socket.id!==undefeined ||opp!== undefeined ){
-
-				console.log(socket.id,opp, "clickplayer",clickData);
-				}
-				*/
 
 
-				Admin.clickEvent(socket.id,opp, clickData);
+				let fin = Admin.clickEvent(socket.id,opp, clickData);
 				//console.log(clickData);
 				//console.log(Admin.getMap().get(socket.id),socket.id);
 				//socket.broadcast.emit('clickAtack',clickData);
 
+				//cargo la partida en data y la comparto para armar la pag
+				//Data 
+				Data = Admin.getPartidaBySockerId(socket.id);
+				//console.log('GAME :',Data.players); 
+				//clickData.ataque = Data.players.
+				//console.log("DATA: ",clickData);
+				socket.emit('GameRefresh',Data.players);
+				socket.broadcast.to(opp).emit('GameRefresh',Data.players);
 				socket.broadcast.to(opp).emit('clickAtack',clickData);
+				if (fin){
+					socket.emit('GameFinsh','WIN');
+					socket.broadcast.to(opp).emit('GameFinsh','LOOSE');
+
+				}
 			});
 
 	});

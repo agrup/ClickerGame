@@ -47,7 +47,14 @@ img {
     font-size: 2em;
     color:white;
     position: absolute;
+    /*
+    */
 }
 .click-container:active{
     transform: translateY(4px);
+}
+.game-especificacion{
+    color:white;
+    font-size: 2em;
+    position: relative;
 }

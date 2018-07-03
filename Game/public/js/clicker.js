@@ -2,10 +2,10 @@
 
 $(document).ready(function(){
 
+	const socket = io();
 	//$('.click-container').clickSpark();
 
-	const socket = io();
-
+/*
 	let click =document.getElementById('click');
 	click.addEventListener('click',function(){
 		console.log(click);
@@ -14,6 +14,7 @@ $(document).ready(function(){
 			User:"Playerx",
 		})
 	});
+*/
 	//Al hacer click en un  jugador informo al server 
 	var clickP =document.getElementsByClassName("click");
 
@@ -32,32 +33,56 @@ $(document).ready(function(){
 	});
   //respuesta clickAtack del servidor
 	socket.on('clickAtack',function(ataque){
-		console.log($('.click-container'));
+		//console.log($('.click-container'));
 		
 		var itemagregar = $('div#'+ataque.Userc+'.click-container');
-		itemagregar.append('<p class="clickeffect">'+'-1'+'</p>')
+		itemagregar.append('<p class="clickeffect">+</p>')
 		/*
-		*/
 		itemagregar.slideup();
+		*/
 		$('.clickeffect').animate({
-		   // opacity: 1,
-		   	//left: "+=20",
-		    height: "toggle",
-		    fontSize:"8em",
-		    //transform: "translateY(4px)"
-		},100,function(){
-			itemagregar.slideup();
-			opacity: 1;
-			$('.clickeffect').slideup(700,function(){
-			$('p.clickeffect').remove();
-				
-			});
-		});
+		    opacity: 0.25,
+		    left: "+=100",
+		    //height: "toggle"
+		  }, 700, function() {
+		    this.remove();
+		    // Animation complete.
+		  });
 		//console.log(itemagregar);
 	});
 
-	socket.on('readyConnection',function(ataque){
+	socket.on('GameReady',function(Game){
+		console.log(Game);
+		console.log(Game.player2);
+		console.log(Game.player1);
+
+		$('#np1').append('<p>'+Game.player1.User.name+'</p>');
+		$('#np2').append('<p>'+Game.player2.User.name+'</p>');
 		
+		$('#lp1').append('<p> Energia '+Game.player1.Vida+'</p>');
+		$('#lp2').append('<p> Energia '+Game.player2.Vida+'</p>');
+		
+		$('#up1').append('<p>Personaje'+Game.player1.User.Player+'</p>');
+		$('#up2').append('<p>Personaje'+Game.player2.User.Player+'</p>');
+
+	});	
+	socket.on('GameRefresh',function(Game){
+
+
+/*
+		$('p#lp1').remove();
+		$('#lp1').append('<p> Energia '+Game.player1.Vida+'</p>');
+		$('p#lp2').remove();
+		$('#lp2').append('<p> Energia '+Game.player2.Vida+'</p>');
+*/		
+		$('#lp1').text(' Energia '+Game.player1.Vida);
+		$('#lp2').text(' Energia '+Game.player2.Vida);
+
 
 	});
+	socket.on('GameFinsh',function(Result){
+		$('dev.finish').append('<h1>Usted: '+Result+'</h1>');
+		alert(Result);
+	});
+
 });

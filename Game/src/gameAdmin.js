@@ -5,7 +5,10 @@ function gameAdmin(){
 	//harcodeadas las partidas
 	//partidas autorizadas
 this.gameAvalible=[11,17,19];
+//hash de sockets id de usuarios
 this.map = new HashMap();
+
+//hash de socket con game
 this.SockGameMap = new HashMap();
 //this.hashMap=[];
 this.gameArray =[];
@@ -19,33 +22,37 @@ this.lastGameCreated=null;
 	gameAdmin.prototype.clickEvent = function clickEvent(socketId,opp, clickData){
 		//busco el oponente y le aplico el ataque
 		//busco la partida
-
 		let partida = this.SockGameMap.get(socketId);
+		//veridico que player es
 		if (partida !==undefined){
-
-			//veridico que player es
 			let game = this.gameArray[partida];
-				//console.log(socketId,partida,game);
-			if(game.socketId1===socketId){
+			if(game.socketId1==socketId){
 				if(clickData.Userc=='player1'){
-				let vida =game.players['player2'].Vida -=
-					game.players['player1'].Ataque;
-							console.log('vida: '+vida);
+
+				let vida =game.players['player1'].Vida -=
+					game.players['player2'].Ataque;
+							if(game.players['player1'].Vida <=0){
+								return true;
+								//console.log('vida: '+vida);
+							};
 						}else{
 							console.log('defensa deshabilitada');
 						}
 
 			}else{
 				if(clickData.Userc=='player2'){
-					let vida =game.players['player1'].Vida -=
-						game.players['player2'].Ataque;
-						console.log('vida: '+vida);
+					let vida =game.players['player2'].Vida -=
+						game.players['player1'].Ataque;
+							if(game.players['player2'].Vida <=0){
+								return true;
+								//console.log('vida: '+vida);
+							};
+						//console.log('vida: '+vida);
 				}else{
 					console.log('defensa deshabilitada');
 				}
 
 			}
-
 		}else
 		{console.log('click undifined');}
 
@@ -54,7 +61,8 @@ this.lastGameCreated=null;
 		//console.log('socket: '+s1);
 
 		var game = new Game(id,u1,u2,s1);
-		game.players.p1=s1;
+		//game.players.p1=s1;
+		game.p1=s1;
 		//game.setuserId2(u2);
 		//game.setuserId1(u1);
 		var ub = this.gameArray.push(game);
@@ -75,7 +83,9 @@ this.lastGameCreated=null;
 } 
 	gameAdmin.prototype.getPartidaBySockerId = function getPartidaBySockerId(Sockid){
 
-	return this.gameArray[id];
+	return this.gameArray[
+	this.SockGameMap.get(Sockid)
+	];
 	//console.log(gameArray);
 } 
 
@@ -101,9 +111,17 @@ this.lastGameCreated=null;
 	}
 	gameAdmin.prototype.addOponent = function addOponent(s2,indice){
 		//console.log(s2);
+		//seteo el socket del player 2
 		this.gameArray[indice].socketId2=s2;
-		this.gameArray[indice].players.p2=s2
+		//hash scok game
 		this.map.set(this.gameArray[indice].socketId1,s2);
+		
+		this.gameArray[indice].socketI1d2=s2
+		
+		//
+		//this.gameArray[indice].players.p2=s2
+		this.gameArray[indice].p2=s2
+		//hash socket game
 		this.SockGameMap.set(s2,indice);
 		this.SockGameMap.set(this.gameArray[indice].socketId1,indice);
 		//this.hashmap[this.gameArray[indice].socketId1]=s2;
@@ -142,8 +160,9 @@ this.lastGameCreated=null;
 					//var game = new Game(id);
 					let ub = this.addNewGame(id,u1,u2,s1);
 
-					return ub;
-					}
+					return false;
+					}else
+					{return true};
 		}
 
 
