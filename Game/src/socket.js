@@ -13,9 +13,9 @@ this.socketIdSocketHash = new HashMap();
 
 	io.on('connection', (socket)=>{
 
-			var dir = socket.handshake.headers.referer.split(path.sep);
-			console.log(
-			this.socketIdSocketHash.set(socket.id,socket));
+			var dir = socket.handshake.headers.referer.split(path.sep);;
+			this.socketIdSocketHash.set(socket.id,socket);
+			//console.log(this.socketIdSocketHash.set(socket.id,socket));
 
 			s= (socket);
 			//console.log(io.sockets[socket.id].socket);
@@ -40,7 +40,7 @@ this.socketIdSocketHash = new HashMap();
 
 				socket.on('clickplayer',(clickData)=>{
 				let opp = Admin.getMap().get(socket.id);
-				console.log("oponente",opp);
+				//console.log("oponente",opp);
 
 				let fin = Admin.clickEvent(socket.id,opp, clickData);
 
@@ -58,7 +58,7 @@ this.socketIdSocketHash = new HashMap();
 					socket.broadcast.to(opp).emit('GameFinsh','YOU LOSE');
 					this.socketIdSocketHash.get(opp).disconnect();
 					socket.broadcast.to(opp).disconnect();
-
+					Admin.terminarPartidaBySocketId(socket.id);
 				}
 			});
 

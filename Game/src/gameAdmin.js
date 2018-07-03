@@ -20,7 +20,16 @@ function gameAdmin(){
 };
 
 
-	gameAdmin.prototype.getMap = function getMap(){
+
+	gameAdmin.prototype.terminarPartidaBySocketId = function terminarPartidaBySocketId(socketId){
+		//this.
+		//console.log(this.gameArray);
+		this.gameArray.splice(this.SockGameMap.get(socketId),1);
+		//console.log(this.gameArray);
+
+	}
+
+		gameAdmin.prototype.getMap = function getMap(){
 		return this.map;
 	}
 
@@ -73,7 +82,7 @@ function gameAdmin(){
 		var ub = this.gameArray.push(game);
 		//this.gameArray[ub].players.p1=s1;
 		//console.log("game"+game.getGameJSON());
-		console.log(s1);
+		//console.log(s1);
 
 		//this.lastGameCreated = id;
 		//console.log(this.gameArray ,this.lastGameCreated);
@@ -162,7 +171,7 @@ function gameAdmin(){
 					if(newP){
 						//creo una partida nueva
 					//var game = new Game(id);
-					console.log(s1,s1.id)
+					//console.log(s1,s1.id)
 					let ub = this.addNewGame(id,u1,u2,s1.id);
 
 					return false;

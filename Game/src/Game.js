@@ -4,7 +4,7 @@ function Game (partidaId ,userId1,userId2,socketId1){
 	this.userId1 = userId1;
 	this.userId2 = userId2;
 	this.socketId1 = socketId1;
-	this.socketI1d2 = null;
+	this.socketId2 = null;
 	this.partidaId =partidaId;
 
 
