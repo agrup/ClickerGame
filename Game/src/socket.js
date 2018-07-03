@@ -54,8 +54,8 @@ module.exports = function(io){
 				socket.broadcast.to(opp).emit('GameRefresh',Data.players);
 				socket.broadcast.to(opp).emit('clickAtack',clickData);
 				if (fin){
-					socket.emit('GameFinsh','WIN');
-					socket.broadcast.to(opp).emit('GameFinsh','LOOSE');
+					socket.emit('GameFinsh','YOU WIN');
+					socket.broadcast.to(opp).emit('GameFinsh','YOU LOSE');
 
 				}
 			});
