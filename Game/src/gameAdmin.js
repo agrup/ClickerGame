@@ -1,19 +1,24 @@
+
 Game = require('./Game');
 var HashMap = require('hashmap');
 function gameAdmin(){
 
-	//harcodeadas las partidas
-	//partidas autorizadas
-this.gameAvalible=[11,17,19];
-//hash de sockets id de usuarios
-this.map = new HashMap();
+		//harcodeadas las partidas
+		//partidas autorizadas
+	//this.gameAvalible=[11,17,19];
 
-//hash de socket con game
-this.SockGameMap = new HashMap();
-//this.hashMap=[];
-this.gameArray =[];
-this.lastGameCreated=null;
+
+	//hash de sockets id de usuarios
+	this.map = new HashMap();
+
+	//hash de socket con game
+	this.SockGameMap = new HashMap();
+	//this.hashMap=[];
+	//Lista de Games
+	this.gameArray =[];
+	//this.lastGameCreated=null;
 };
+
 
 	gameAdmin.prototype.getMap = function getMap(){
 		return this.map;
@@ -80,34 +85,33 @@ this.lastGameCreated=null;
 
 	return this.gameArray[id];
 	//console.log(gameArray);
-} 
+	} 
 	gameAdmin.prototype.getPartidaBySockerId = function getPartidaBySockerId(Sockid){
 
 	return this.gameArray[
 	this.SockGameMap.get(Sockid)
 	];
 	//console.log(gameArray);
-} 
+	} 
 
 	gameAdmin.prototype.getGames = function getGames(){
 
 	return this.gameArray;
 	//console.log(gameArray);
-} 
+	} 
 
 	gameAdmin.prototype.getLastGame = function getLastGames(){
 
 	return this.lastGameCreated;
 	//console.log(gameArray);
-} 
+	} 
 
 	gameAdmin.prototype.getSocketIdOponent = function getSocketIdOponent(socketId){
 		
 		this.gameArray.forEach(function(valor, indice) {
 			(valor);
 		});
-/*
-*/
+
 	}
 	gameAdmin.prototype.addOponent = function addOponent(s2,indice){
 		//console.log(s2);
@@ -163,7 +167,7 @@ this.lastGameCreated=null;
 					return false;
 					}else
 					{return true};
-		}
+	}
 
 
 

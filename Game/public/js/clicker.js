@@ -3,18 +3,7 @@
 $(document).ready(function(){
 
 	const socket = io();
-	//$('.click-container').clickSpark();
 
-/*
-	let click =document.getElementById('click');
-	click.addEventListener('click',function(){
-		console.log(click);
-		socket.emit('clickemit',{
-			click :"+1",
-			User:"Playerx",
-		})
-	});
-*/
 	//Al hacer click en un  jugador informo al server 
 	var clickP =document.getElementsByClassName("click");
 
@@ -68,13 +57,6 @@ $(document).ready(function(){
 	});	
 	socket.on('GameRefresh',function(Game){
 
-
-/*
-		$('p#lp1').remove();
-		$('#lp1').append('<p> Energia '+Game.player1.Vida+'</p>');
-		$('p#lp2').remove();
-		$('#lp2').append('<p> Energia '+Game.player2.Vida+'</p>');
-*/		
 		$('#lp1').text(' Energia '+Game.player1.Vida);
 		$('#lp2').text(' Energia '+Game.player2.Vida);
 

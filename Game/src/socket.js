@@ -27,29 +27,17 @@ module.exports = function(io){
 				socket.broadcast.to(opp).emit('GameReady',Data.players);
 			}
 
-/*
-				socket.on('clickemit',(clickData)=>{
-				
-				//io.sockets.emit('clickAtack',clickData);
 
-				socket.broadcast.emit('clickAtack',clickData);
-				});
-*/
 				socket.on('clickplayer',(clickData)=>{
 				let opp = Admin.getMap().get(socket.id);
 
 
 				let fin = Admin.clickEvent(socket.id,opp, clickData);
-				//console.log(clickData);
-				//console.log(Admin.getMap().get(socket.id),socket.id);
-				//socket.broadcast.emit('clickAtack',clickData);
 
 				//cargo la partida en data y la comparto para armar la pag
 				//Data 
 				Data = Admin.getPartidaBySockerId(socket.id);
-				//console.log('GAME :',Data.players); 
-				//clickData.ataque = Data.players.
-				//console.log("DATA: ",clickData);
+
 				socket.emit('GameRefresh',Data.players);
 				socket.broadcast.to(opp).emit('GameRefresh',Data.players);
 				socket.broadcast.to(opp).emit('clickAtack',clickData);
