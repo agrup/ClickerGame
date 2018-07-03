@@ -25,7 +25,7 @@ $(document).ready(function(){
 		//console.log($('.click-container'));
 		
 		var itemagregar = $('div#'+ataque.Userc+'.click-container');
-		itemagregar.append('<p class="clickeffect">+</p>')
+		itemagregar.append('<p class="clickeffect">Click</p>')
 		/*
 		itemagregar.slideup();
 		*/
