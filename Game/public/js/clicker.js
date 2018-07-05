@@ -45,6 +45,10 @@ $(document).ready(function(){
 		console.log(Game.player2);
 		console.log(Game.player1);
 
+
+		$("#img-p1").append('<img src=/img/'+Game.player1.User.img+' alt=P1>');
+		$("#img-p2").append('<img src=/img/'+Game.player2.User.img+' alt=P2>');
+
 		$('#np1').append('<p>'+Game.player1.User.name+'</p>');
 		$('#np2').append('<p>'+Game.player2.User.name+'</p>');
 		

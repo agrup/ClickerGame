@@ -7,12 +7,13 @@ function Game (partidaId ,userId1,userId2,socketId1){
 	this.socketId2 = null;
 	this.partidaId =partidaId;
 
-
+//partida harcodeada para poder hacer las pruebas 
 
 	this.players={
 		"player1":
 			{
-				"Vida":5,
+				"max-vida":50,
+				"Vida":50,
 
 				"Ataque":1,
 				"Defensa":0.5,
@@ -25,14 +26,14 @@ function Game (partidaId ,userId1,userId2,socketId1){
 				"Player":1,
 				"name":"Bruno",
 				"Player":"Goku-00",
-				"img":"Goku-00"
+				"img":"freezer-4.png"
 			}
 		},
 
 		"player2":
 		{
-
-			"Vida":5,
+			"max-vida":50,
+			"Vida":50,
 			"Ataque":1,
 			"Defensa":0.5,
 			"especial":{
@@ -44,7 +45,7 @@ function Game (partidaId ,userId1,userId2,socketId1){
 				"Player":2,
 				"name":"Agustin",
 				"Player":"Freezer",
-				"img":"Freezer-4"
+				"img":"Goku-0.png"
 			}
 		}
 	};
