@@ -53,6 +53,7 @@ this.socketIdSocketHash = new HashMap();
 				socket.broadcast.to(opp).emit('clickAtack',clickData);
 				if (fin){
 					socket.emit('GameFinsh','YOU WIN');
+
 					//socket.id[opp].disconnect();
 					socket.disconnect();
 					socket.broadcast.to(opp).emit('GameFinsh','YOU LOSE');
