@@ -43,6 +43,7 @@ module.exports = function(io){
 				socket.broadcast.to(opp).emit('clickAtack',clickData);
 				if (fin){
 					socket.emit('GameFinsh','YOU WIN');
+					console.log(io.sockets, io.socket);
 					socket.broadcast.to(opp).emit('GameFinsh','YOU LOSE');
 
 				}
