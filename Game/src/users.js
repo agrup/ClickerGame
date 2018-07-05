@@ -8,6 +8,6 @@ class Usuarios {
 		this.aponentID = null;
 	}
 
-
+//hacer el usuario para administrarlo
 
 }

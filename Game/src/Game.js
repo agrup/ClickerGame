@@ -12,7 +12,7 @@ function Game (partidaId ,userId1,userId2,socketId1){
 	this.players={
 		"player1":
 			{
-				"Vida":5,
+				"Vida":100,
 				"Ataque":1,
 				"Defensa":0.5,
 				"especial":{
@@ -28,8 +28,8 @@ function Game (partidaId ,userId1,userId2,socketId1){
 
 		"player2":
 		{
-			"Vida":5,
-			"Ataque":1,
+			"Vida":50,
+			"Ataque":2,
 			"Defensa":0.5,
 			"especial":{
 				"Ataque +":1,
