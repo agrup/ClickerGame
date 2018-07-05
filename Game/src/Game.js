@@ -4,7 +4,7 @@ function Game (partidaId ,userId1,userId2,socketId1){
 	this.userId1 = userId1;
 	this.userId2 = userId2;
 	this.socketId1 = socketId1;
-	this.socketI1d2 = null;
+	this.socketId2 = null;
 	this.partidaId =partidaId;
 
 
@@ -12,7 +12,8 @@ function Game (partidaId ,userId1,userId2,socketId1){
 	this.players={
 		"player1":
 			{
-				"Vida":10,
+				"Vida":5,
+
 				"Ataque":1,
 				"Defensa":0.5,
 				"especial":{
@@ -30,7 +31,8 @@ function Game (partidaId ,userId1,userId2,socketId1){
 
 		"player2":
 		{
-			"Vida":10,
+
+			"Vida":5,
 			"Ataque":1,
 			"Defensa":0.5,
 			"especial":{

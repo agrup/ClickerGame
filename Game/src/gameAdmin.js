@@ -20,7 +20,16 @@ function gameAdmin(){
 };
 
 
-	gameAdmin.prototype.getMap = function getMap(){
+
+	gameAdmin.prototype.terminarPartidaBySocketId = function terminarPartidaBySocketId(socketId){
+		//this.
+		//console.log(this.gameArray);
+		this.gameArray.splice(this.SockGameMap.get(socketId),1);
+		//console.log(this.gameArray);
+
+	}
+
+		gameAdmin.prototype.getMap = function getMap(){
 		return this.map;
 	}
 
@@ -67,13 +76,13 @@ function gameAdmin(){
 
 		var game = new Game(id,u1,u2,s1);
 		//game.players.p1=s1;
-		game.p1=s1;
+		game.p1=s1.id;
 		//game.setuserId2(u2);
 		//game.setuserId1(u1);
 		var ub = this.gameArray.push(game);
 		//this.gameArray[ub].players.p1=s1;
 		//console.log("game"+game.getGameJSON());
-		console.log("gameArray"+game.getPlayer2());
+		//console.log(s1);
 
 		//this.lastGameCreated = id;
 		//console.log(this.gameArray ,this.lastGameCreated);
@@ -120,7 +129,7 @@ function gameAdmin(){
 		//hash scok game
 		this.map.set(this.gameArray[indice].socketId1,s2);
 		
-		this.gameArray[indice].socketI1d2=s2
+		//this.gameArray[indice].socketI1d2=s2
 		
 		//
 		//this.gameArray[indice].players.p2=s2
@@ -150,7 +159,7 @@ function gameAdmin(){
 		    			
 		    			newP = false;
 		    			var ub = indice;
-		    			Admin.addOponent(s1,indice);
+		    			Admin.addOponent(s1.id,indice);
 		    			console.log("agregado a partida");
 		    			//console.log(newP);    		
 		    		}
@@ -162,7 +171,8 @@ function gameAdmin(){
 					if(newP){
 						//creo una partida nueva
 					//var game = new Game(id);
-					let ub = this.addNewGame(id,u1,u2,s1);
+					//console.log(s1,s1.id)
+					let ub = this.addNewGame(id,u1,u2,s1.id);
 
 					return false;
 					}else
