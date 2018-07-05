@@ -12,8 +12,8 @@ function Game (partidaId ,userId1,userId2,socketId1){
 	this.players={
 		"player1":
 			{
-				"max-vida":50,
-				"Vida":50,
+				"max-vida":80,
+				"Vida":80,
 
 				"Ataque":1,
 				"Defensa":0.5,
