@@ -25,7 +25,7 @@ function Game (partidaId ,userId1,userId2,socketId1){
 				"User":{
 				"Player":1,
 				"name":"Bruno",
-				"Player":"Goku-00",
+				"Player":"Frezzer",
 				"img":"freezer-4.png"
 			}
 		},
@@ -44,7 +44,7 @@ function Game (partidaId ,userId1,userId2,socketId1){
 			"User":{
 				"Player":2,
 				"name":"Agustin",
-				"Player":"Freezer",
+				"Player":"Goku",
 				"img":"Goku-0.png"
 			}
 		}

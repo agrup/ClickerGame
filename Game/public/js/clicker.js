@@ -52,17 +52,21 @@ $(document).ready(function(){
 		$('#np1').append('<p>'+Game.player1.User.name+'</p>');
 		$('#np2').append('<p>'+Game.player2.User.name+'</p>');
 		
-		$('#lp1').append('<p> Energia '+Game.player1.Vida+'</p>');		
+		$('#lp1').text(" Energia "+Game.player1.Vida);		
 		
 		$('#lp1-bar').append('<progress id="health-1" value='+Game.player1.Vida+' max='+Game.player1.Vida+'></progress>');
-
-		$('#lp2').append('<p> Energia '+Game.player2.Vida+'</p>');
+		
+		$('#lp2').text(" Energia "+Game.player2.Vida);
 		$('#lp2-bar').append('<progress id="health-2" value='+Game.player2.Vida+' max='+Game.player2.Vida+'></progress>');
 		
 		$('#up1').append('<p>Personaje'+Game.player1.User.Player+'</p>');
 		$('#up2').append('<p>Personaje'+Game.player2.User.Player+'</p>');
 
 	});	
+	socket.on('GameWait',function(Game){
+		block();
+	});
+
 	socket.on('GameRefresh',function(Game){
 
 		$('#lp1').text(' Energia '+Game.player1.Vida);
@@ -85,4 +89,10 @@ $(document).ready(function(){
 		alert(Result);
 	});
 
+	function block(){
+		$('myblock').width('100%');
+	};
+	function unBlock(){
+		$('myblock').width('0%');
+	};
 });

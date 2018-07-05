@@ -31,10 +31,21 @@ this.socketIdSocketHash = new HashMap();
 				//cargo la partida en data y la comparto para armar la pag
 				//Data 
 				Data = Admin.getPartidaBySockerId(socket.id);
-				//console.log('GAME :',Data.players); 
-				socket.emit('GameReady',Data.players);
 
+				let time = 3000;
+
+				socket.emit('GameWait',time);
+				socket.broadcast.to(opp).emit('Gamewait',time);
+
+				setTimeout(init,time);
+
+				//console.log('GAME :',Data.players); 
+
+				function init(){
+
+				socket.emit('GameReady',Data.players);
 				socket.broadcast.to(opp).emit('GameReady',Data.players);
+				}
 			}
 
 
