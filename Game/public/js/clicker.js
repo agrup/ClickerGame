@@ -63,8 +63,8 @@ $(document).ready(function(){
 		$('#up2').append('<p>Personaje'+Game.player2.User.Player+'</p>');
 
 	});	
-	socket.on('GameWait',function(Game){
-		block();
+	socket.on('oponentDiconnect',function(){
+		console.log('Desconectado');
 	});
 
 	socket.on('GameRefresh',function(Game){

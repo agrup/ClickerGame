@@ -8,8 +8,10 @@ module.exports = function(io){
 
 this.socketIdSocketHash = new HashMap();
 
+	
 
-	//verificar coockie para permitir conccion 
+
+	//verificar coockie para permitir coneccion 
 
 	io.on('connection', (socket)=>{
 
@@ -22,7 +24,7 @@ this.socketIdSocketHash = new HashMap();
 
 			// creo los juegos
 			// o agrego jugador
-			//se lo pido al Admin
+			//se lo pido a Admin
 			let ub = Admin.addGames(dir[4],dir[5],dir[6],s);
 
 			if (ub){
@@ -49,6 +51,25 @@ this.socketIdSocketHash = new HashMap();
 			}
 
 
+
+				socket.on('disconnect', (socket)=>{
+					
+					let opp =this.socketIdSocketHash.get(socket.id);
+					console.log(socket);
+					this.socketIdSocketHash.delete(socket.id);
+					this.socketIdSocketHash.delete(opp);
+/*
+					socket.broadcast.to(opp).emit('oponentDiconnect','dis');
+					socket.broadcast.to(opp).disconnect();
+*/
+					
+
+					
+					console.log('diconnect');
+
+
+				});
+
 				socket.on('clickplayer',(clickData)=>{
 				let opp = Admin.getMap().get(socket.id);
 				//console.log("oponente",opp);
@@ -73,6 +94,12 @@ this.socketIdSocketHash = new HashMap();
 					Admin.terminarPartidaBySocketId(socket.id);
 				}
 			});
+
+
+
+
+
+
 
 	});
 }
