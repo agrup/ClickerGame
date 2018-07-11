@@ -13,9 +13,9 @@ function Game (partidaId ,userId1,userId2,socketId1){
 		"player1":
 			{
 
+
+				"max-vida":100,
 				"Vida":100,
-				"max-vida":80,
-				"Vida":80,
 
 				"Ataque":1,
 				"Defensa":0.5,
@@ -26,7 +26,7 @@ function Game (partidaId ,userId1,userId2,socketId1){
 				},
 				"User":{
 				"Player":1,
-				"name":"Bruno",
+				"name":"Luli",
 				"Player":"Goku-00",
 				"img":"freezer-4.png"
 			}
@@ -35,8 +35,8 @@ function Game (partidaId ,userId1,userId2,socketId1){
 		"player2":
 		{
 
-			"max-vida":50,
-			"Vida":50,
+			"max-vida":100,
+			"Vida":100,
 			"Ataque":1,
 
 			"Defensa":0.5,
