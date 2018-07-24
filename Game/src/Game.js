@@ -1,13 +1,17 @@
 
-function Game (partidaId ,userId1,userId2,socketId1){
+function Game (partidaId ,userId1,userId2){
 
 	this.userId1 = userId1;
 	this.userId2 = userId2;
-	this.socketId1 = socketId1;
+	this.socketId1 = null;
 	this.socketId2 = null;
 	this.partidaId =partidaId;
 
+	this.players=null;
+
+
 //partida harcodeada para poder hacer las pruebas 
+/*
 
 	this.players={
 		"player1":
@@ -56,6 +60,7 @@ function Game (partidaId ,userId1,userId2,socketId1){
 	};
 
 
+*/
 
 
 }
@@ -92,6 +97,12 @@ function Game (partidaId ,userId1,userId2,socketId1){
 
 	Game.prototype.setSocketId1 = function setuserId1(sock){
 		this.SocketId1= sock;
+	}
+	Game.prototype.setGame = function setGame(game){
+		console.log('holaaa:',game);
+		//this.players= game;
+		this.players=game;
+
 	}
 
 

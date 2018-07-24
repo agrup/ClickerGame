@@ -1,4 +1,4 @@
-const reglas = require('./reglas');
+//const reglas = require('./reglas');
 const path =require('path');
 const express = require ('express');
 var http = require('http');
@@ -8,6 +8,15 @@ var user = require('./users');
 const app = express();
 var expressWs = require('express-ws')(app);
 
+
+
+var dotenv = require ('dotenv');
+dotenv.load ();
+
+
+
+
+var request = require("request");
 //importo la clase game para crear la partida o agregar 
 var Game =require('./Game');
 
@@ -34,13 +43,6 @@ var port = (process.env.PORT || 5000);
 
 app.set('port', port);
 
-
-//server http
-/*
-console.log(port);
-var serverHTTP = http.createServer(app);
-
-*/
 
 // defino a server para que escuche con los parametros de app
 const server = app.listen(app.get('port'), ()=> {
@@ -75,9 +77,48 @@ require('./socket')(io,user);
 
 
 
-app.get('/game/:id/:u1/:u2', function(req, res) {
+app.get('/game/:game/:user/:signature', function(reque, res) {
+
+//creado por insomnia 
+//Recomendado totalmente
+//tiene para muchos lenguajes
+
+var options = { method: 'GET',
+  url: 'http://localhost:8000/api/game',
+  qs: 
+   { 
+     api_token:process.env.API_TOKEN,
+     game: reque.params.game,
+     user: reque.params.user,
+     signature: reque.params.signature,
+
+ } };
+
+
+request(options, function (error, response, game) {
+  if (error) throw new Error(error);
+
+game = JSON.parse(game);
+  if(game){
+  console.log(game);
+
+  Admin.CreateGame(game);
 
 		res.render('index');
+	}else{
+		
 	 	//res.redirect('../');
+	}
 
 });
+
+
+
+		//res.render('index');
+
+
+});
+
+
+
+

@@ -11,43 +11,53 @@ this.socketIdSocketHash = new HashMap();
 	
 
 
-	//verificar coockie para permitir coneccion 
 
 	io.on('connection', (socket)=>{
 
-			var dir = socket.handshake.headers.referer.split(path.sep);;
+
+			var dir = socket.handshake.headers.referer.split(path.sep);
 			this.socketIdSocketHash.set(socket.id,socket);
 			//console.log(this.socketIdSocketHash.set(socket.id,socket));
 
 			s= (socket);
+			//console.log(s);
 			//console.log(io.sockets[socket.id].socket);
 
 			// creo los juegos
 			// o agrego jugador
 			//se lo pido a Admin
-			let ub = Admin.addGames(dir[4],dir[5],dir[6],s);
+			//console.log('CONSOLELOG',dir[4],dir[5],dir[6]);
+			let ub = Admin.addGames(dir[4],dir[6],s);
 
-			if (ub){
+			if (ub!==null){
 				
 				let opp = Admin.getMap().get(socket.id);
-				//cargo la partida en data y la comparto para armar la pag
-				//Data 
-				Data = Admin.getPartidaBySockerId(socket.id);
 
-				let time = 3000;
+				if(opp!==undefined){
 
-				socket.emit('GameWait',time);
-				socket.broadcast.to(opp).emit('Gamewait',time);
 
-				setTimeout(init,time);
+					console.log(opp,'socket connection',s.id);
+					//cargo la partida en data y la comparto para armar la pag
+					//Data 
+					Data = Admin.getPartidaBySockerId(socket.id);
+					
+					let time = 3000;
 
-				//console.log('GAME :',Data.players); 
+					socket.emit('GameWait',time);
+					socket.broadcast.to(opp).emit('Gamewait',time);
 
-				function init(){
+					setTimeout(init,time);
 
-				socket.emit('GameReady',Data.players);
-				socket.broadcast.to(opp).emit('GameReady',Data.players);
+					//console.log('GAME :',Data.players); 
+
+					function init(){
+
+					socket.emit('GameReady',Data.players);
+					socket.broadcast.to(opp).emit('GameReady',Data.players);
+					};
 				}
+			}else{
+				//socket.disconnect();
 			}
 
 
@@ -70,10 +80,12 @@ this.socketIdSocketHash = new HashMap();
 
 				});
 
-				socket.on('clickplayer',(clickData)=>{
+				socket.on('clickPlayer',(clickData)=>{
+				
 				let opp = Admin.getMap().get(socket.id);
 				//console.log("oponente",opp);
 
+				//let fin = Admin.clickEvent(socket.id,opp, clickData);
 				let fin = Admin.clickEvent(socket.id,opp, clickData);
 
 				//cargo la partida en data y la comparto para armar la pag

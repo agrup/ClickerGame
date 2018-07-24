@@ -11,8 +11,9 @@ $(document).ready(function(){
 
 			let UserId = socket.id;
 			let UserClickeado = this.id;
+			
 			console.log(UserClickeado);
-			socket.emit('clickplayer',{
+			socket.emit('clickPlayer',{
 				click :"+1",
 				//User: UserId,
 				Userc:UserClickeado,
@@ -42,25 +43,25 @@ $(document).ready(function(){
 
 	socket.on('GameReady',function(Game){
 		console.log(Game);
-		console.log(Game.player2);
-		console.log(Game.player1);
+		console.log(Game.Player2);
+		console.log(Game.Player1);
 
 
-		$("#img-p1").append('<img src=/img/'+Game.player1.User.img+' alt=P1>');
-		$("#img-p2").append('<img src=/img/'+Game.player2.User.img+' alt=P2>');
+		$("#img-p1").append('<img src=/img'+Game.Player1.user.img+'.png alt=P1>');
+		$("#img-p2").append('<img src=/img'+Game.Player2.user.img+'.png alt=P2>');
 
-		$('#np1').append('<p>'+Game.player1.User.name+'</p>');
-		$('#np2').append('<p>'+Game.player2.User.name+'</p>');
+		$('#np1').append('<p>'+Game.Player1.user.name+'</p>');
+		$('#np2').append('<p>'+Game.Player2.user.name+'</p>');
 		
-		$('#lp1').text(" Energia "+Game.player1.Vida);		
+		$('#lp1').text(" Energia "+Game.Player1.vida);		
 		
-		$('#lp1-bar').append('<progress id="health-1" value='+Game.player1.Vida+' max='+Game.player1.Vida+'></progress>');
+		$('#lp1-bar').append('<progress id="health-1" value='+Game.Player1.vida+' max='+Game.Player1.vida+'></progress>');
 		
-		$('#lp2').text(" Energia "+Game.player2.Vida);
-		$('#lp2-bar').append('<progress id="health-2" value='+Game.player2.Vida+' max='+Game.player2.Vida+'></progress>');
+		$('#lp2').text(" Energia "+Game.Player2.vida);
+		$('#lp2-bar').append('<progress id="health-2" value='+Game.Player2.vida+' max='+Game.Player2.vida+'></progress>');
 		
-		$('#up1').append('<p>Personaje'+Game.player1.User.Player+'</p>');
-		$('#up2').append('<p>Personaje'+Game.player2.User.Player+'</p>');
+		$('#up1').append('<p>Personaje'+Game.Player1.user.Player+'</p>');
+		$('#up2').append('<p>Personaje'+Game.Player2.user.Player+'</p>');
 
 	});	
 	socket.on('oponentDiconnect',function(){
@@ -69,18 +70,18 @@ $(document).ready(function(){
 
 	socket.on('GameRefresh',function(Game){
 
-		$('#lp1').text(' Energia '+Game.player1.Vida);
-		$('#lp2').text(' Energia '+Game.player2.Vida);
+		$('#lp1').text(' Energia '+Game.Player1.vida);
+		$('#lp2').text(' Energia '+Game.Player2.vida);
 
-		$('#lp1').attr('value',Game.player1.Vida);
-		//$('#lp1').append('<p> Energia '+Game.player1.Vida+'</p>');		
+		$('#lp1').attr('value',Game.Player1.vida);
+		//$('#lp1').append('<p> Energia '+Game.Player1.Vida+'</p>');		
 		
-		$('#health-1').attr('value',Game.player1.Vida);
+		$('#health-1').attr('value',Game.Player1.vida);
 
-		$('#lp1').attr('value',Game.player1.Vida);
-		//$('#lp2').append('<p> Energia '+Game.player2.Vida+'</p>');
-		$('#health-2').attr('value',Game.player2.Vida);
-		//$('#lp2').append('<progress id="health-2" value='+Game.player2.Vida+' max='+Game.player2.Vida+'></progress>');
+		$('#lp1').attr('value',Game.Player1.vida);
+		//$('#lp2').append('<p> Energia '+Game.Player2.Vida+'</p>');
+		$('#health-2').attr('value',Game.Player2.vida);
+		//$('#lp2').append('<progress id="health-2" value='+Game.Player2.Vida+' max='+Game.Player2.Vida+'></progress>');
 
 
 	});

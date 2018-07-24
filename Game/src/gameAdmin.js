@@ -41,11 +41,12 @@ function gameAdmin(){
 		if (partida !==undefined){
 			let game = this.gameArray[partida];
 			if(game.socketId1==socketId){
-				if(clickData.Userc=='player1'){
+				if(clickData.Userc=='Player1'){
+					console.log('Click gme',game.players.Player1);
 
-				let vida =game.players['player1'].Vida -=
-					game.players['player2'].Ataque;
-							if(game.players['player1'].Vida <=0){
+				let vida =game.players.Player1.vida -=
+					game.players.Player2.ataque;
+							if(game.players.Player1.vida <=0){
 								return true;
 								//console.log('vida: '+vida);
 							};
@@ -54,10 +55,10 @@ function gameAdmin(){
 						}
 
 			}else{
-				if(clickData.Userc=='player2'){
-					let vida =game.players['player2'].Vida -=
-						game.players['player1'].Ataque;
-							if(game.players['player2'].Vida <=0){
+				if(clickData.Userc=='Player2'){
+					let vida =game.players.Player2.vida -=
+						game.players.Player1.ataque;
+							if(game.players.Player2.vida <=0){
 								return true;
 								//console.log('vida: '+vida);
 							};
@@ -71,24 +72,39 @@ function gameAdmin(){
 		{console.log('click undifined');}
 
 	}
-	gameAdmin.prototype.addNewGame = function addNewGame(id,u1,u2,s1){
-		//console.log('socket: '+s1);
 
-		var game = new Game(id,u1,u2,s1);
-		//game.players.p1=s1;
-		game.p1=s1.id;
-		//game.setuserId2(u2);
-		//game.setuserId1(u1);
-		var ub = this.gameArray.push(game);
-		//this.gameArray[ub].players.p1=s1;
-		//console.log("game"+game.getGameJSON());
-		//console.log(s1);
+	gameAdmin.prototype.CreateGame = function CreateGame(game){
 
-		//this.lastGameCreated = id;
-		//console.log(this.gameArray ,this.lastGameCreated);
+		var b=true;
 
-		return ub;
-	} ;
+		this.gameArray.forEach(function(valor, indice) {
+
+			
+			if(game.Game ==valor.partidaId){
+				b=false;
+				var gameAux = game;
+				Admin.gameArray[indice].setGame(game)
+				//console.log('AUX',Admin.gameArray);
+				
+			}
+
+		});
+			if(b){
+				var game = new Game(game.Game,game.url1,game.url2);
+				Admin.gameArray.push(game);
+				//console.log('Gaame array:',this.gameArray[game.Game]);
+
+			}
+
+			
+
+		//console.log('gameArray:->',this.gameArray);
+		return b;
+	}
+
+
+
+
 	
 	gameAdmin.prototype.getPartidaByid = function getPartidaByid(id){
 
@@ -122,62 +138,113 @@ function gameAdmin(){
 		});
 
 	}
-	gameAdmin.prototype.addOponent = function addOponent(s2,indice){
-		//console.log(s2);
-		//seteo el socket del player 2
-		this.gameArray[indice].socketId2=s2;
+
+	gameAdmin.prototype.addNewGame = function addNewGame(hash,socket,indice){
+		//console.log('socket: '+s1);
+
+		this.gameArray[indice].socketId1=socket;
+		
+		//this.gameArray[indice].userId1=u1;
+
 		//hash scok game
-		this.map.set(this.gameArray[indice].socketId1,s2);
+		
+
+		//hash socket game
+		this.SockGameMap.set(socket,indice);
+		if(this.gameArray[indice].socketId2!==null){
+
+		this.SockGameMap.set(this.gameArray[indice].socketId2,indice);
+		//hash  sock1 sock2
+		this.map.set(this.gameArray[indice].socketId2,socket);
+		//this.hashmap[this.gameArray[indice].socketId1]=s2;
+		this.map.set(socket,this.gameArray[indice].socketId2);
+		};
+
+		//console.log(this.map);
+		//console.log('juego creado::::',this.gameArray[indice]);
+		return true;
+
+	} ;
+
+
+	gameAdmin.prototype.addOponent = function addOponent(hash2,socket2,indice){
+		//seteo el socket del player 2
+		this.gameArray[indice].socketId2=socket2;
+		//this.gameArray[indice].userId2=hash2;
+		//console.log(socket2,'casaaaaa0',this.gameArray[indice]);
+
+		//hash sock game
 		
 		//this.gameArray[indice].socketI1d2=s2
 		
 		//
 		//this.gameArray[indice].players.p2=s2
-		this.gameArray[indice].p2=s2
-		//hash socket game
-		this.SockGameMap.set(s2,indice);
-		this.SockGameMap.set(this.gameArray[indice].socketId1,indice);
-		//this.hashmap[this.gameArray[indice].socketId1]=s2;
-		this.map.set(s2,this.gameArray[indice].socketId1);
+		//this.gameArray[indice].p2=s2
+			//hash socket con indice 
+		this.SockGameMap.set(socket2,indice);
+		if(this.gameArray[indice].socketId1!==null){
+
+			this.map.set(this.gameArray[indice].socketId1,socket2);
+			//hash socket game
+			//indice con socket de 1->2
+			this.SockGameMap.set(this.gameArray[indice].socketId1,indice);
+			//this.hashmap[this.gameArray[indice].socketId1]=s2;
+			//indice con socket de 2->1
+			this.map.set(socket2,this.gameArray[indice].socketId1);
+		};
 		//console.log(this.map);
 
 		return true;
 	}	
 
 
-	gameAdmin.prototype.addGames = function addGames(id,u1,u2,s1){
+	gameAdmin.prototype.addGames = function addGames(id,hash,socket){
 
-
+		var ub=null;
 		var newP = true;
+		
 
 				//verifico si existe la partida si no la creo
-				//gameArray.forEach(function(valor, indice, array) {
-				this.gameArray.forEach(function(valor, indice) {
-		    	//console.log("En el índice " + indice + " hay este valor: " + valor.partidaId + " id requerido"+ id);
-
-		    		if(valor.partidaId==id ){
-		    			
+			//gameArray.forEach(function(valor, indice, array) {
+			this.gameArray.forEach(function(valor, indice) {
+	    	//console.log("En el índice " + indice + " hay este valor: " + valor.partidaId + " id requerido"+ id);
+	    		
+	    		if(valor.partidaId==id){
+		    		if(valor.userId2==hash)
+		    		{
+		    			console.log('agregar oponente',hash,id);
+		    			ub = indice;
 		    			newP = false;
-		    			var ub = indice;
-		    			Admin.addOponent(s1.id,indice);
+		    			Admin.addOponent(hash,socket.id,indice);
 		    			console.log("agregado a partida");
+		    			return ub;
+		    			console.log(ub);
 		    			//console.log(newP);    		
 		    		}
+		    		else
+		    		{
+		    			Admin.addNewGame(hash,socket.id,indice);
+						console.log('Creada la partida');
+		    			ub = indice;
+		    			return ub;
+		    		}
+	    		}else{
 
-				});
+	    		}
 
+			});
 
+		return ub;
+
+	}
 				//creo la partida
+				/*
 					if(newP){
-						//creo una partida nueva
-					//var game = new Game(id);
-					//console.log(s1,s1.id)
-					let ub = this.addNewGame(id,u1,u2,s1.id);
-
 					return false;
 					}else
 					{return true};
 	}
+				*/
 
 
 
