@@ -40,9 +40,9 @@ function gameAdmin(){
 		//veridico que player es
 		if (partida !==undefined){
 			let game = this.gameArray[partida];
-			if(game.socketId1==socketId){
+			if(game.socketId2==socketId){
 				if(clickData.Userc=='Player1'){
-					console.log('Click gme',game.players.Player1);
+					//console.log('Click gme',game.players.Player1);
 
 				let vida =game.players.Player1.vida -=
 					game.players.Player2.ataque;
