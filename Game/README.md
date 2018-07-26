@@ -4,12 +4,15 @@ requeriemientos
 en el directorio game 
 	$ npm install
 
+
+CONFIGURACION
+==============
+	.env
+	----
+		API_TOKEN="hash de 60 caracteres hexa creados al hacer la migracion del juego"
+		PORT="5000"
+
+
 Iniciar servidor
 	$ npm start 
 
-Para iniciar un juego Ingresar a localhost:5000/game/"numero de game"/user1/user2
-
-	en esta instancia solo ingrsando desde dos navegadores al mismo numero de sala se puede jugar
-
-
-	Forma de juego se debe clickear al oponente hasta dejarlo sin vida
