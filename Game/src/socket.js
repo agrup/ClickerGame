@@ -36,7 +36,7 @@ this.socketIdSocketHash = new HashMap();
 				if(opp!==undefined){
 
 
-					console.log(opp,'socket connection',s.id);
+					//console.log(opp,'socket connection',s.id);
 					//cargo la partida en data y la comparto para armar la pag
 					//Data 
 					Data = Admin.getPartidaBySockerId(socket.id);
@@ -49,11 +49,16 @@ this.socketIdSocketHash = new HashMap();
 					setTimeout(init,time);
 
 					//console.log('GAME :',Data.players); 
-
+					var p1=Admin.IsPlayerOne(socket.id)
+					console.log("DATA:  ", p1);
+					console.log("DATA:  ",'csa');
 					function init(){
-
-					socket.emit('GameReady',Data.players);
-					socket.broadcast.to(opp).emit('GameReady',Data.players);
+						//if (s.id == Da)
+						if(Data!==undefined){
+							
+							socket.emit('GameReady',Data.players,p1);
+							socket.broadcast.to(opp).emit('GameReady',Data.players,!p1);
+						};
 					};
 				}
 			}else{
@@ -65,7 +70,7 @@ this.socketIdSocketHash = new HashMap();
 				socket.on('disconnect', (socket)=>{
 					
 					let opp =this.socketIdSocketHash.get(socket.id);
-					console.log(socket);
+					//console.log(socket);
 					this.socketIdSocketHash.delete(socket.id);
 					this.socketIdSocketHash.delete(opp);
 /*

@@ -33,6 +33,17 @@ function gameAdmin(){
 		return this.map;
 	}
 
+	gameAdmin.prototype.IsPlayerOne = function IsPlayerOne(socketId){
+		console.log('ADMIN GAME',(this.gameArray[this.SockGameMap.get(socketId)]).socketId1,' s id',socketId)
+			if((this.gameArray[this.SockGameMap.get(socketId)]).socketId1 == socketId){
+				return true;
+			}else{
+				return false;
+			}
+
+
+	}
+
 	gameAdmin.prototype.clickEvent = function clickEvent(socketId,opp, clickData){
 		//busco el oponente y le aplico el ataque
 		//busco la partida
@@ -212,13 +223,13 @@ function gameAdmin(){
 	    		if(valor.partidaId==id){
 		    		if(valor.userId2==hash)
 		    		{
-		    			console.log('agregar oponente',hash,id);
+		    			//console.log('agregar oponente',hash,id);
 		    			ub = indice;
 		    			newP = false;
 		    			Admin.addOponent(hash,socket.id,indice);
 		    			console.log("agregado a partida");
 		    			return ub;
-		    			console.log(ub);
+		    			//console.log(ub);
 		    			//console.log(newP);    		
 		    		}
 		    		else

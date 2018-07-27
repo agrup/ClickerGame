@@ -100,7 +100,7 @@ request(options, function (error, response, game) {
 
 game = JSON.parse(game);
   if(game){
-  console.log(game);
+  //console.log(game);
 
   Admin.CreateGame(game);
 

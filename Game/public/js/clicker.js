@@ -23,29 +23,59 @@ $(document).ready(function(){
 	});
   //respuesta clickAtack del servidor
 	socket.on('clickAtack',function(ataque){
-		//console.log($('.click-container'));
+		//console.log('casa   ', ataque.Userc);
 		
 		var itemagregar = $('div#'+ataque.Userc+'.click-container');
-		itemagregar.append('<p class="clickeffect">Click</p>')
+		//var itemagregar = $('div#'+ataque.Userc+'Click');
+		console.log(itemagregar);
+		itemagregar.append('<div class="ciruclo"><p class="clickeffect circulo">Click</p></div>');
 		/*
 		itemagregar.slideup();
 		*/
+		if(ataque.Userc=='Player1'){
+			
+		
 		$('.clickeffect').animate({
-		    opacity: 0.25,
-		    left: "+=100",
+	    	opacity: 0.25,
+	    	background: "red",
+		    left: -500,
+		    width: 100
 		    //height: "toggle"
-		  }, 700, function() {
+		  }, 1100, function() {
 		    this.remove();
 		    // Animation complete.
 		  });
+		}else{
+
+		$('.clickeffect').animate({
+			
+     		pacity: 0.25,
+		    width: 200,
+     		height: 200
+		    //height: "toggle"
+		    //height: "toggle"
+		  }, 1100, function() {
+		    this.remove();
+		    // Animation complete.
+		  });
+
+
+		}
 		//console.log(itemagregar);
 	});
 
-	socket.on('GameReady',function(Game){
-		console.log(Game);
+	socket.on('GameReady',function(Game,ub){
+		console.log(Game, ub);
 		console.log(Game.Player2);
 		console.log(Game.Player1);
-
+/*
+		if(ub){
+			aux = $(".left")
+			$(".right").attr('class', 'split left');
+			
+			aux.attr('class', 'split right');
+		}
+*/
 
 		$("#img-p1").append('<img src=/img'+Game.Player1.user.img+'.png alt=P1>');
 		$("#img-p2").append('<img src=/img'+Game.Player2.user.img+'.png alt=P2>');
