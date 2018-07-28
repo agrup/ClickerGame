@@ -48,7 +48,7 @@ $(document).ready(function(){
 		}else{
 
 		$('.clickeffect').animate({
-			
+			left: -10,
      		pacity: 0.25,
 		    width: 200,
      		height: 200
@@ -90,8 +90,8 @@ $(document).ready(function(){
 		$('#lp2').text(" Energia "+Game.Player2.vida);
 		$('#lp2-bar').append('<progress id="health-2" value='+Game.Player2.vida+' max='+Game.Player2.vida+'></progress>');
 		
-		$('#up1').append('<p>Personaje'+Game.Player1.user.Player+'</p>');
-		$('#up2').append('<p>Personaje'+Game.Player2.user.Player+'</p>');
+		$('#up1').append('<p>'+Game.Player1.user.Player+'</p>');
+		$('#up2').append('<p>'+Game.Player2.user.Player+'</p>');
 
 	});	
 	socket.on('oponentDiconnect',function(){
