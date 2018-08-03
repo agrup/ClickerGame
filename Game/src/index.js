@@ -84,7 +84,7 @@ app.get('/game/:game/:user/:signature', function(reque, res) {
 //tiene para muchos lenguajes
 
 var options = { method: 'GET',
-  url: 'http://localhost:8000/api/game',
+  url: process.env.URL+'/api/game',
   qs: 
    { 
      api_token:process.env.API_TOKEN,

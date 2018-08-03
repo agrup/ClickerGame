@@ -74,7 +74,7 @@ progress::-webkit-progress-value {
 
 .centered {
     position: absolute;
-        top: 60%;
+    top: 60%;
     left: 50%;
     transform: translate(-50%, -50%);
     text-align: center;
@@ -160,4 +160,27 @@ progress::-webkit-progress-value {
      border-radius: 50%;
      background: #e9ef1aad;
      z-index: 1;
+}
+
+.finish
+{
+    background-color: black;
+    color: red;
+    text-align: right;
+    bottom: 50%;
+    right: 10%;
+    z-index: 1;
+    position: absolute;
+    font-size: 30px;
+}
+@media only screen and (max-width: 1000px){
+
+  .finish
+{
+
+    font-size: 14px;
+    right: 8%;
+}
+
+
 }

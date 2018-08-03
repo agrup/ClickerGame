@@ -5,23 +5,29 @@
 	<title>Socket</title>
 	<link rel="stylesheet" type="text/css" href={{__dirname}}"/css/clicker.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
+      <script src="//code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	<script src="/socket.io/socket.io.js" charset="utf-8"></script>
 	<script src="{{__dirname}}/js/clicker.js" charset="utf-8"></script>
+	<script>
+		game.init();
+	</script>
 	
 
 </head>
 <body>
 
-
+<div id="rival"></div>
 <div class="campo" id="campo">
-	<div class="finish"></div>
+	<div class="finish"><<<<<== OPONENTE ==>>></div>
 	<div class="split left">
+
   			<div class="game-especificacion">
-				<div class="UserPlayer" id="up2">  				</div>
-				<div class="LivePlayer" id="lp2">  					</div>
-				<div id="lp2-bar"></div>
-				<div class="namePlayer" id="np2"></div>
+				<div class="UserPlayer" id="up2">  		<p></p>		</div>
+				<div class="LivePlayer" id="lp2">  			<p></p>		</div>
+				<div id="lp2-bar"><p></p></div>
+				<div class="namePlayer" id="np2"><p></p></div>
   						
   			</div>
   		<div class="centered ">
@@ -30,7 +36,8 @@
 				<div class="pesonaje-container rounded-circle">
 					<div class="impacto"></div>
 					<div id="img-p2">
-						
+						<img src="" alt="">
+						<div clsas="wait"></div>
 					</div>
 					<!--
 					<img src="/img/freezer-0".gif" alt="P2">
@@ -41,11 +48,12 @@
 		</div>
 	</div>	
 	<div class="split right">
+
   			<div class="game-especificacion">
-				<div class="UserPlayer" id="up1">  				</div>
-				<div class="LivePlayer" id="lp1">  					</div>
-				<div id="lp1-bar"></div>
-				<div class="namePlayer" id="np1"></div>
+				<div class="UserPlayer" id="up1">  	<p></p>			</div>
+				<div class="LivePlayer" id="lp1">  		<p></p>			</div>
+				<div id="lp1-bar"><p></p></div>
+				<div class="namePlayer" id="np1"><p></p></div>
   						
   			</div>
   		<div class="centered">
@@ -54,7 +62,8 @@
 				<div class="pesonaje-container rounded-circle">
 					<div class="impacto"></div>
 					<div id="img-p1">
-						
+						<img src="" alt="">
+						<div clsas="wait"></div>
 					</div>
 					<!--
 					<img src="/img/Goku-0.png" alt="P1">

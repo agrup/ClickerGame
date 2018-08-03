@@ -43,15 +43,23 @@ this.socketIdSocketHash = new HashMap();
 					
 					let time = 3000;
 
-					socket.emit('GameWait',time);
-					socket.broadcast.to(opp).emit('Gamewait',time);
+					var p1=Admin.IsPlayerOne(socket.id)
+					if(p1){
+
+					socket.emit('GameWait',time,p1);
+					socket.broadcast.to(opp).emit('Gamewait',time,!p1);
+				}else{
+					socket.emit('GameWait',time,!p1);
+					socket.broadcast.to(opp).emit('Gamewait',time,p1);
+				}
+
+
 
 					setTimeout(init,time);
 
 					//console.log('GAME :',Data.players); 
-					var p1=Admin.IsPlayerOne(socket.id)
-					console.log("DATA:  ", p1);
-					console.log("DATA:  ",'csa');
+					//console.log("DATA:  ", p1);
+					//console.log("DATA:  ",'csa');
 					function init(){
 						//if (s.id == Da)
 						if(Data!==undefined){

@@ -54,7 +54,7 @@ function gameAdmin(){
 		console.log('ganador',ganador,'perdedor',perdedor);
  
 		var options = { method: 'GET',
-		  url: 'http://localhost:8000/api/game/terminar',
+		  url:  process.env.URL+'/api/game/terminar',
 		  qs: 
 		   { 
 		     api_token:process.env.API_TOKEN,
